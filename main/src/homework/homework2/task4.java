@@ -8,21 +8,21 @@ public class task4 {
     // Пользователю должно показаться сообщение,
     // что пустые строки вводить нельзя.
     public static void main(String[] args) {
-        String text = createNonEmptyString();
-        System.out.println("text = " + text);
+        try {
+            String text = createNonEmptyString();
+            System.out.println("text = " + text);
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private static String createNonEmptyString() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Пустые строки вводить нельзя!");
-        while (true){
-            System.out.printf("Введите строку: ");
-            String res = sc.nextLine();
-            if (!res.isEmpty()) return res;
-            else {
-                System.out.println("Был ввод пустой строки :(");
-            }
-        }
+        System.out.printf("Введите строку: ");
+        String res = sc.nextLine();
+        if (!res.isEmpty()) return res;
+        else throw new RuntimeException("Ввод был пустой :(");
     }
 
 }
